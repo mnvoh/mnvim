@@ -1,0 +1,8 @@
+require("display")
+require("lsp")
+require("nvim_tree")
+require("plugins")
+require("remap")
+require("settings")
+require("statusline")
+require("treesitter")
