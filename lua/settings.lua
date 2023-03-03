@@ -31,6 +31,6 @@ vim.opt.updatetime = 50
 vim.opt.colorcolumn = '89'
 
 autocmd('BufWritePre', {
-    pattern = '',
-    command = 'lua vim.lsp.buf.format { async = true }',
+    pattern = '*.py',
+    command = 'Black',
 })
