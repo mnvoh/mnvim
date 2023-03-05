@@ -4,8 +4,10 @@ return require('packer').startup(function(use)
 
     use('psf/black')
 
+    use('github/copilot.vim')
+
     use 'nvim-tree/nvim-web-devicons'
-    use {'romgrk/barbar.nvim', requires = 'nvim-web-devicons'}
+    -- use {'romgrk/barbar.nvim', requires = 'nvim-web-devicons'}
 
     use {
         'glepnir/dashboard-nvim',

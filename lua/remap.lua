@@ -52,17 +52,20 @@ vim.keymap.set('n', 'N', 'Nzzzv') -- Keep search occurance in the middle of the 
 
 vim.keymap.set('x', 'p', '"_dP') -- Keep current value in register when pasting over a selection
 
+vim.keymap.set('i', '<Tab>', 'copilot#Accept("<CR>")', { silent = true, expr = true })
+
+
 -- barbar keymaps
-vim.keymap.set('n', 'gT', '<Cmd>BufferPrevious<CR>')
-vim.keymap.set('n', 'gt', '<Cmd>BufferNext<CR>')
-vim.keymap.set('n', '<A-1>', '<Cmd>BufferGoto 1<CR>')
-vim.keymap.set('n', '<A-2>', '<Cmd>BufferGoto 2<CR>')
-vim.keymap.set('n', '<A-3>', '<Cmd>BufferGoto 3<CR>')
-vim.keymap.set('n', '<A-4>', '<Cmd>BufferGoto 4<CR>')
-vim.keymap.set('n', '<A-5>', '<Cmd>BufferGoto 5<CR>')
-vim.keymap.set('n', '<A-6>', '<Cmd>BufferGoto 6<CR>')
-vim.keymap.set('n', '<A-7>', '<Cmd>BufferGoto 7<CR>')
-vim.keymap.set('n', '<A-8>', '<Cmd>BufferGoto 8<CR>')
-vim.keymap.set('n', '<A-9>', '<Cmd>BufferGoto 9<CR>')
+-- vim.keymap.set('n', 'gT', '<Cmd>BufferPrevious<CR>')
+-- vim.keymap.set('n', 'gt', '<Cmd>BufferNext<CR>')
+-- vim.keymap.set('n', '<A-1>', '<Cmd>BufferGoto 1<CR>')
+-- vim.keymap.set('n', '<A-2>', '<Cmd>BufferGoto 2<CR>')
+-- vim.keymap.set('n', '<A-3>', '<Cmd>BufferGoto 3<CR>')
+-- vim.keymap.set('n', '<A-4>', '<Cmd>BufferGoto 4<CR>')
+-- vim.keymap.set('n', '<A-5>', '<Cmd>BufferGoto 5<CR>')
+-- vim.keymap.set('n', '<A-6>', '<Cmd>BufferGoto 6<CR>')
+-- vim.keymap.set('n', '<A-7>', '<Cmd>BufferGoto 7<CR>')
+-- vim.keymap.set('n', '<A-8>', '<Cmd>BufferGoto 8<CR>')
+-- vim.keymap.set('n', '<A-9>', '<Cmd>BufferGoto 9<CR>')
 
 
