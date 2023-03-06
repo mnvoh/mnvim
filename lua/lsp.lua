@@ -30,11 +30,13 @@ lsp.configure('pylsp', {
 local cmp = require('cmp')
 lsp.setup_nvim_cmp({
     mapping = {
-        ['<C-p>'] = cmp.mapping.select_prev_item(cmp_select),
-        ['<C-n>'] = cmp.mapping.select_next_item(cmp_select),
-        ['<C-y>'] = cmp.mapping.confirm({ select = true }),
+        --['<C-p>'] = cmp.mapping.select_prev_item(cmp_select),
+        --['<C-n>'] = cmp.mapping.select_next_item(cmp_select),
+        ['<CR>'] = cmp.mapping.confirm({ select = true }),
         ['<C-Space>'] = cmp.mapping.complete(),
-        ['<Tab>'] = cmp.mapping.disabled,
+        ['<C-j>'] = cmp.mapping(function(fallback)
+          vim.api.nvim_feedkeys(vim.fn['copilot#Accept'](vim.api.nvim_replace_termcodes('<Tab>', true, true, true)), 'n', true)
+        end),
     },
 })
 

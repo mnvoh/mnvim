@@ -13,6 +13,7 @@ wk.register({
 
 	f = {
 		name = "File", -- optional group name
+        c = { function() vim.fn.setreg('+', vim.fn.expand('%')) end, "Copy File Path" },
         e = { function() vim.cmd.NvimTreeFindFile() end, 'NVim Tree' },
 		f = { telescope_builtin.find_files, "Find File" }, -- create a binding with label
 		g = { telescope_builtin.git_files, "Find Git File" }, -- create a binding with label
@@ -52,7 +53,13 @@ vim.keymap.set('n', 'N', 'Nzzzv') -- Keep search occurance in the middle of the 
 
 vim.keymap.set('x', 'p', '"_dP') -- Keep current value in register when pasting over a selection
 
-vim.keymap.set('i', '<Tab>', 'copilot#Accept("<CR>")', { silent = true, expr = true })
+vim.g.copilot_no_tab_map = 1
+vim.keymap.set(
+    "i",
+    "<Plug>(vimrc:copilot-dummy-map)",
+    'copilot#Accept("")',
+    { silent = true, expr = true, desc = "Copilot dummy accept" }
+)
 
 
 -- barbar keymaps
