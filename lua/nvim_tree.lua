@@ -7,11 +7,6 @@ require("nvim-tree").setup({
   sort_by = "case_sensitive",
   view = {
     width = 30,
-    mappings = {
-        list = {
-            { key = '<Esc>', action = 'close_window' },
-        },
-    },
     float = {
         enable = true,
         open_win_config = function()
