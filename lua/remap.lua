@@ -5,46 +5,34 @@ local lsp = require('lsp-zero')
 
 vim.g.mapleader = ' '
 
-wk.register({
-	g = {
-		name = "Git",
-		g = { vim.cmd.Git, "Git" },
-	},
+wk.add({
+    { "<leader>f", group = "File" },
+    { "<leader>fc", function() vim.fn.setreg('+', vim.fn.expand('%')) end, desc = "Copy File Path" },
+    { "<leader>fe", function() vim.cmd.NvimTreeFindFile() end, desc = "NVim Tree" },
+    { "<leader>ff", telescope_builtin.find_files, desc = "Find File" },
+    { "<leader>fg", telescope_builtin.git_files, desc = "Find Git File" },
+    { "<leader>ft", function() telescope_builtin.grep_string() end, desc = "Find Text" },
 
-	f = {
-		name = "File", -- optional group name
-        c = { function() vim.fn.setreg('+', vim.fn.expand('%')) end, "Copy File Path" },
-        e = { function() vim.cmd.NvimTreeFindFile() end, 'NVim Tree' },
-		f = { telescope_builtin.find_files, "Find File" }, -- create a binding with label
-		g = { telescope_builtin.git_files, "Find Git File" }, -- create a binding with label
-        t = { function() telescope_builtin.grep_string() end, "Find Text"},
-	},
+    { "<leader>g", vim.cmd.Git, group = "Git" },
+    -- { "<leader>gg", <function 1>, desc = "Git" },
 
-	u = { vim.cmd.UndotreeToggle, "Undo Tree" },
+    { "<leader>u", vim.cmd.UndotreeToggle, desc = "Undo Tree" },
 
-    v = {
-		ws = { function() vim.lsp.buf.workspace_symbol() end, "Workspace Symbol" },
-		d = { function() vim.diagnostic.open_float() end, "Open Float" },
-		ca = { function() vim.lsp.buf.code_action() end, "Code Action" },
-		rr = { function() vim.lsp.buf.references() end, "References" },
-		rn = { function() vim.lsp.buf.rename() end, "Rename" },
-	},
-}, { mode="n", prefix = "<leader>" })
+    { "<leader>vca", function() vim.lsp.buf.code_action() end, desc = "Code Action" },
+    { "<leader>vd", function() vim.diagnostic.open_float() end, desc = "Open Float" },
+    { "<leader>vrn", function() vim.lsp.buf.rename() end, desc = "Rename" },
+    { "<leader>vrr", function() vim.lsp.buf.references() end, desc = "References" },
+    { "<leader>vws", function() vim.lsp.buf.workspace_symbol() end, desc = "Workspace Symbol" },
 
-wk.register({
-    d = {'"_d', "To Void"},
-    y = { '"+y', "Yank to Clipboard" },
-}, { mode="v", prefix = "<leader>" })
+    { "<leader>d", '"_d', desc = "To Void", mode = "v" },
 
-wk.register({
-	gd = { function() vim.lsp.buf.definition() end, "Goto Definition" },
-	K = { function() vim.lsp.buf.hover() end, "Hover" },
-}, { mode="n" })
+    { "<leader>y", '"+y', desc = "Yank to Clipboard", mode = "v" },
 
-wk.register({
-    J = { ":m '>+1<CR>gv=gv", "Move Selection Up"},
-    K = { ":m '<-2<CR>gv=gv", "Move Selection Down" },
-}, { mode="v" })
+    -- { "K", function() vim.lsp.buf.hover() end, desc = "Hover" },
+    { "gd", function() vim.lsp.buf.definition() end, desc = "Goto Definition" },
+    { "J", ":m '>+1<CR>gv=gv", desc = "Move Selection Up", mode = "v" },
+    { "K", ":m '<-2<CR>gv=gv", desc = "Move Selection Down", mode = "v" },
+})
 
 vim.keymap.set('i', '<C-h>', function() vim.lsp.buf.signature_help() end, { remap = false })
 
@@ -52,14 +40,6 @@ vim.keymap.set('n', 'n', 'nzzzv') -- Keep search occurance in the middle of the 
 vim.keymap.set('n', 'N', 'Nzzzv') -- Keep search occurance in the middle of the screen
 
 vim.keymap.set('x', 'p', '"_dP') -- Keep current value in register when pasting over a selection
-
-vim.g.copilot_no_tab_map = 1
-vim.keymap.set(
-    "i",
-    "<Plug>(vimrc:copilot-dummy-map)",
-    'copilot#Accept("")',
-    { silent = true, expr = true, desc = "Copilot dummy accept" }
-)
 
 
 -- barbar keymaps

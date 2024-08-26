@@ -4,9 +4,8 @@ return require('packer').startup(function(use)
 
     use('psf/black')
 
-    use('github/copilot.vim')
-
     use 'nvim-tree/nvim-web-devicons'
+    use 'echasnovski/mini.nvim'
     -- use {'romgrk/barbar.nvim', requires = 'nvim-web-devicons'}
 
     use {
@@ -97,7 +96,7 @@ return require('packer').startup(function(use)
     }
 
     use {
-        'nvim-telescope/telescope.nvim', tag = '0.1.1',
+        'nvim-telescope/telescope.nvim',
         requires = { {'nvim-lua/plenary.nvim'} }
     }
 
