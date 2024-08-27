@@ -3,7 +3,8 @@ local telescope_builtin = require('telescope.builtin')
 local lsp = require('lsp-zero')
 
 
-vim.g.mapleader = ' '
+-- leader mapping in lazy.lua
+-- vim.g.mapleader = ' '
 
 wk.add({
     { "<leader>f", group = "File" },

@@ -1,14 +1,13 @@
-return require('packer').startup(function(use)
-    -- Packer can manage itself
-    use('wbthomason/packer.nvim')
+return {
+    -- Lazy can manage itself, no need for a separate entry
 
-    use('psf/black')
+    { "psf/black" },
 
-    use 'nvim-tree/nvim-web-devicons'
-    use 'echasnovski/mini.nvim'
-    -- use {'romgrk/barbar.nvim', requires = 'nvim-web-devicons'}
+    { "nvim-tree/nvim-web-devicons" },
+    { "echasnovski/mini.nvim" },
+    -- { "romgrk/barbar.nvim", dependencies = "nvim-web-devicons" },
 
-    use {
+    {
         'glepnir/dashboard-nvim',
         event = 'VimEnter',
         config = function()
@@ -19,9 +18,9 @@ return require('packer').startup(function(use)
                         enable = true,
                     },
                     shortcut = {
-                        { desc = ' Update', group = '@property', action = 'Lazy update', key = 'u' },
+                        { desc = ' Update', group = '@property', action = 'Lazy update', key = 'u' },
                         {
-                            icon = ' ',
+                            icon = ' ',
                             icon_hl = '@variable',
                             desc = 'Files',
                             group = 'Label',
@@ -29,13 +28,13 @@ return require('packer').startup(function(use)
                             key = 'f',
                         },
                         {
-                            desc = ' Apps',
+                            desc = ' Apps',
                             group = 'DiagnosticHint',
                             action = 'Telescope app',
                             key = 'a',
                         },
                         {
-                            desc = ' dotfiles',
+                            desc = ' dotfiles',
                             group = 'Number',
                             action = 'Telescope dotfiles',
                             key = 'd',
@@ -44,67 +43,68 @@ return require('packer').startup(function(use)
                 },
             }
         end,
-        requires = {'nvim-tree/nvim-web-devicons'}
-    }
+        dependencies = {'nvim-tree/nvim-web-devicons'}
+    },
 
-    use('feline-nvim/feline.nvim')
+    { "feline-nvim/feline.nvim" },
 
-    use {
+    {
         'lewis6991/gitsigns.nvim',
-        config = function() require('gitsigns').setup({
-            signs = {
-                add          = { text = '▐' },
-                change       = { text = '▐' },
-                delete       = { text = '_' },
-                topdelete    = { text = '‾' },
-                changedelete = { text = '~' },
-                untracked    = { text = '▐' },
-            },
-        }) end
-    }
+        config = function()
+            require('gitsigns').setup({
+                signs = {
+                    add          = { text = '▐' },
+                    change       = { text = '▐' },
+                    delete       = { text = '_' },
+                    topdelete    = { text = '‾' },
+                    changedelete = { text = '~' },
+                    untracked    = { text = '▐' },
+                },
+            })
+        end
+    },
 
-    use('lukas-reineke/indent-blankline.nvim')
+    { "lukas-reineke/indent-blankline.nvim" },
 
-    use {
+    {
         'VonHeikemen/lsp-zero.nvim',
         branch = 'v1.x',
-        requires = {
+        dependencies = {
             -- LSP Support
-            {'neovim/nvim-lspconfig'},             -- Required
-            {'williamboman/mason.nvim'},           -- Optional
-            {'williamboman/mason-lspconfig.nvim'}, -- Optional
+            {'neovim/nvim-lspconfig'},
+            {'williamboman/mason.nvim'},
+            {'williamboman/mason-lspconfig.nvim'},
 
             -- Autocompletion
-            {'hrsh7th/nvim-cmp'},         -- Required
-            {'hrsh7th/cmp-nvim-lsp'},     -- Required
-            {'hrsh7th/cmp-buffer'},       -- Optional
-            {'hrsh7th/cmp-path'},         -- Optional
-            {'saadparwaiz1/cmp_luasnip'}, -- Optional
-            {'hrsh7th/cmp-nvim-lua'},     -- Optional
+            {'hrsh7th/nvim-cmp'},
+            {'hrsh7th/cmp-nvim-lsp'},
+            {'hrsh7th/cmp-buffer'},
+            {'hrsh7th/cmp-path'},
+            {'saadparwaiz1/cmp_luasnip'},
+            {'hrsh7th/cmp-nvim-lua'},
 
             -- Snippets
-            {'L3MON4D3/LuaSnip'},             -- Required
-            {'rafamadriz/friendly-snippets'}, -- Optional
+            {'L3MON4D3/LuaSnip'},
+            {'rafamadriz/friendly-snippets'},
         }
-    }
+    },
 
-    use {
+    {
         'nvim-tree/nvim-tree.lua',
-        requires = {
+        dependencies = {
             'nvim-tree/nvim-web-devicons', -- optional, for file icons
         }
-    }
+    },
 
-    use {
+    {
         'nvim-telescope/telescope.nvim',
-        requires = { {'nvim-lua/plenary.nvim'} }
-    }
+        dependencies = { {'nvim-lua/plenary.nvim'} }
+    },
 
-    use('folke/tokyonight.nvim')
 
-    use('nvim-treesitter/nvim-treesitter', { run = ':TSUpdate' })
+    { "nvim-treesitter/nvim-treesitter", build = ":TSUpdate" },
 
-    use {
+    {
         "folke/which-key.nvim",
         config = function()
             vim.o.timeout = true
@@ -115,9 +115,37 @@ return require('packer').startup(function(use)
                 -- refer to the configuration section below
             }
         end
-    }
+    },
 
-    use("mbbill/undotree")
+    { "mbbill/undotree" },
 
-    use('tpope/vim-fugitive')
-end)
+    { "tpope/vim-fugitive" },
+
+    {
+        "yetone/avante.nvim",
+        event = "VeryLazy",
+        build = "make",
+        opts = {
+            -- add any opts here
+        },
+        dependencies = {
+            "nvim-tree/nvim-web-devicons", -- or echasnovski/mini.icons
+            "stevearc/dressing.nvim",
+            "nvim-lua/plenary.nvim",
+            "MunifTanjim/nui.nvim",
+            --- The below is optional, make sure to setup it properly if you have lazy=true
+            {
+                'MeanderingProgrammer/render-markdown.nvim',
+                opts = {
+                    file_types = { "markdown", "Avante" },
+                },
+                ft = { "markdown", "Avante" },
+            },
+        },
+    },
+
+    -- Color Schemes
+
+    { "folke/tokyonight.nvim" },
+    { "realbucksavage/riderdark.vim" },
+}

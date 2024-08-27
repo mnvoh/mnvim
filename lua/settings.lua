@@ -30,6 +30,9 @@ vim.opt.signcolumn = 'yes'
 vim.opt.updatetime = 50
 vim.opt.colorcolumn = '89'
 
+vim.opt.laststatus = 3
+vim.opt.splitkeep = "screen"
+
 autocmd('BufWritePre', {
     pattern = '*.py',
     command = 'Black',
