@@ -144,6 +144,20 @@ return {
         },
     },
 
+    {
+        "gennaro-tedesco/nvim-possession",
+        dependencies = {
+            "ibhagwan/fzf-lua",
+        },
+        config = true,
+        init = function()
+            require("nvim-possession").setup({
+                autoload = true,
+                autosave = true,
+            })
+        end,
+    },
+
     -- Color Schemes
 
     { "folke/tokyonight.nvim" },

@@ -1,6 +1,7 @@
 local wk = require('which-key')
 local telescope_builtin = require('telescope.builtin')
 local lsp = require('lsp-zero')
+local possession = require("nvim-possession")
 
 
 -- leader mapping in lazy.lua
@@ -29,6 +30,15 @@ wk.add({
 
     { "<leader>y", '"+y', desc = "Yank to Clipboard", mode = "v" },
 
+
+    -- possession
+    { "<leader>s", group = "PosSession" },
+    { "<leader>sl", function() possession.list() end, desc = "List Sessions" },
+    { "<leader>sn", function() possession.new() end, desc = "New Session" },
+    { "<leader>su", function() possession.update() end, desc = "Update Session" },
+    { "<leader>sd", function() possession.delete() end, desc = "Delete Session" },
+
+
     -- { "K", function() vim.lsp.buf.hover() end, desc = "Hover" },
     { "gd", function() vim.lsp.buf.definition() end, desc = "Goto Definition" },
     { "J", ":m '>+1<CR>gv=gv", desc = "Move Selection Up", mode = "v" },
@@ -41,6 +51,10 @@ vim.keymap.set('n', 'n', 'nzzzv') -- Keep search occurance in the middle of the 
 vim.keymap.set('n', 'N', 'Nzzzv') -- Keep search occurance in the middle of the screen
 
 vim.keymap.set('x', 'p', '"_dP') -- Keep current value in register when pasting over a selection
+
+-- move tabs
+vim.keymap.set('n', '<A-.>', '<Cmd>tabm +1<CR>')
+vim.keymap.set('n', '<A-,>', '<Cmd>tabm -1<CR>')
 
 
 -- barbar keymaps
